@@ -58,6 +58,100 @@
 
 
 
+		$("#aname").keydown(function (event) {
+
+
+
+			if (event.keyCode == 13){
+				$.ajax({
+					url : "workbench/contacts/getActivityListAndNotContactsId.do",
+					data : {
+						"contactsId":"${con.id}",
+						"aname":$.trim($("#aname").val())
+					},
+					type : "get",
+					dataType : "json",
+					success : function (data) {
+
+						var html = "";
+						$.each(data,function (i,n) {
+
+							html += '<tr>';
+							html += '<td><input type="checkbox" value="'+n.id+'" name="xz" /></td>';
+							html += '<td>'+n.name+'</td>';
+							html += '<td>'+n.startDate+'</td>';
+							html += '<td>'+n.endDate+'</td>';
+							html += '<td>'+n.owner+'</td>';
+							html += '</tr>';
+						})
+						$("#activityBody").html(html);
+					}
+
+				})
+				return false;
+
+			}
+		})
+
+
+		$("#qx").click(function () {
+         $("inpunt[name=xz]").prop("checked",this.checked);
+		})
+
+		//给联系人绑定市场活动
+		$("#bundBtn").click(function () {
+
+			var $xz = $("input[name=xz]:checked");
+			var id = $xz.val();
+
+			if ($xz.length == 0) {
+				alert("请选择需要的市场活动");
+			} else {
+				param = "cid=${con.id}&";
+				for (var i = 0; i < $xz.length; i++) {
+					param += "aid="+$($xz[i]).val();
+					if (i < $xz.length - 1) {
+						param += "&";
+					}
+				}
+				//alert(param)
+				$.ajax({
+					url : "workbench/contacts/bundActivity.do",
+					data :param,
+					type : "post",
+					dataType : "json",
+					success : function (data) {
+
+						if(data){
+
+							//清除搜索框中的信息  复选框中的√干掉 清空activityBody中的内容
+							$("#qx").prop("checked",false);
+							$("#aname").val("");
+							//关闭模态窗口
+							$("#bundModal").modal("hide");
+
+							//关联成功
+							//刷新关联市场活动的列表
+							location.reload();
+
+						}else{
+
+							alert("关联市场活动失败");
+
+						}
+					}
+
+				})
+			}
+
+		})
+
+
+
+
+
+
+
 
 
 		searchContactsActivityList();
@@ -182,8 +276,11 @@
 
               })
 
-
           }
+
+
+
+
 
 
 
@@ -228,7 +325,7 @@
 					<div class="btn-group" style="position: relative; top: 18%; left: 8px;">
 						<form class="form-inline" role="form">
 						  <div class="form-group has-feedback">
-						    <input type="text" class="form-control" style="width: 300px;" placeholder="请输入市场活动名称，支持模糊查询">
+						    <input type="text" id="aname" class="form-control" style="width: 300px;" placeholder="请输入市场活动名称，支持模糊查询">
 						    <span class="glyphicon glyphicon-search form-control-feedback"></span>
 						  </div>
 						</form>
@@ -236,7 +333,7 @@
 					<table id="activityTable2" class="table table-hover" style="width: 900px; position: relative;top: 10px;">
 						<thead>
 							<tr style="color: #B3B3B3;">
-								<td><input type="checkbox"/></td>
+								<td><input type="checkbox" id="qx"/></td>
 								<td>名称</td>
 								<td>开始日期</td>
 								<td>结束日期</td>
@@ -244,27 +341,27 @@
 								<td></td>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
+						<tbody id="activityBody">
+							<%--<tr>
 								<td><input type="checkbox"/></td>
 								<td>发传单</td>
 								<td>2020-10-10</td>
 								<td>2020-10-20</td>
 								<td>zhangsan</td>
-							</tr>
-							<tr>
+							</tr>--%>
+							<%--<tr>
 								<td><input type="checkbox"/></td>
 								<td>发传单</td>
 								<td>2020-10-10</td>
 								<td>2020-10-20</td>
 								<td>zhangsan</td>
-							</tr>
+							</tr>--%>
 						</tbody>
 					</table>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-					<button type="button" class="btn btn-primary" data-dismiss="modal">关联</button>
+					<button type="button" id="bundBtn" class="btn btn-primary" data-dismiss="modal">关联活动</button>
 				</div>
 			</div>
 		</div>

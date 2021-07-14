@@ -9,6 +9,7 @@ import com.mo.crm.vo.PaginationVO;
 import java.util.List;
 import java.util.Map;
 
+
 public interface ActivityService {
 
 
@@ -43,4 +44,6 @@ public interface ActivityService {
     List<Activity> getActivityListByName(String aname);
 
     List<Activity> getContactsActivityList(Tran contactsId);
+
+    List<Activity> getActivityListAndNotContactsId(Map<String, String> map);
 }

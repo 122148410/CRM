@@ -31,4 +31,6 @@ public interface ContactsService {
     List<Tran> getContactsTranList(Tran contactsId);
 
     boolean unbundActivity(String id);
+
+    boolean bundActivity(String cid, String[] aid);
 }

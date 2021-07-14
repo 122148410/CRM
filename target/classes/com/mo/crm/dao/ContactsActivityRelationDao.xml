@@ -23,6 +23,19 @@
         delete from tbl_contacts_activity_relation where id=#{id}
     </delete>
 
+
+    <insert id="bund">
+        insert into tbl_contacts_activity_relation(
+            id,
+            contactsId,
+            activityId
+
+        )values (
+            #{id},
+            #{contactsId},
+            #{activityId}
+        )
+    </insert>
 </mapper>
 
 

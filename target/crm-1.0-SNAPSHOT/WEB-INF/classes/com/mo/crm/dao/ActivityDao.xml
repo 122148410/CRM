@@ -227,6 +227,31 @@
 
         where contactsId=#{contactsId}
     </select>
+
+    <select id="getActivityListAndNotContactsId" resultType="Activity">
+        select
+
+        a.id,
+        u.name as owner,
+        a.name,
+        a.startDate,
+        a.endDate
+
+        from tbl_activity a
+        join tbl_user u
+        on u.id = a.owner
+
+        where a.name like '%' #{aname} '%'
+
+         and a.id not in (
+         select
+         activityId
+         from tbl_contacts_activity_relation
+         where
+         contactsId=#{contactsId}
+         )
+
+    </select>
 </mapper>
 
 

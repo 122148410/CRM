@@ -33,4 +33,6 @@ public interface ActivityDao {
     List<Activity> getActivityListByName(String aname);
 
     List<Activity> getContactsActivityList(Tran contactsId);
+
+    List<Activity> getActivityListAndNotContactsId(Map<String, String> map);
 }

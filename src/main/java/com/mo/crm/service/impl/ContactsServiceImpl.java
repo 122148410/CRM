@@ -1,10 +1,7 @@
 package com.mo.crm.service.impl;
 
 import com.mo.crm.dao.*;
-import com.mo.crm.domain.Contacts;
-import com.mo.crm.domain.Customer;
-import com.mo.crm.domain.Tran;
-import com.mo.crm.domain.User;
+import com.mo.crm.domain.*;
 import com.mo.crm.service.ContactsService;
 import com.mo.crm.utils.DateTimeUtil;
 import com.mo.crm.utils.UUIDUtil;
@@ -178,8 +175,33 @@ public class ContactsServiceImpl implements ContactsService {
 
     @Override
     public boolean unbundActivity(String id) {
-        System.out.println("unbundActivityIMPL"+id);
+       // System.out.println("unbundActivityIMPL"+id);
         boolean flag = contactsActivityRelationDao.unbundActivity(id);
+        return flag;
+    }
+
+    @Override
+    public boolean bundActivity(String cid, String[] aid) {
+
+
+        boolean flag = true;
+
+        for(String a:aid){
+
+            //取得每一个aid和cid做关联
+            ContactsActivityRelation car = new ContactsActivityRelation();
+            car.setId(UUIDUtil.getUUID());
+            car.setActivityId(a);
+            car.setContactsId(cid);
+
+            //添加关联关系表中的记录
+            int count = contactsActivityRelationDao.bund(car);
+            if(count!=1){
+                flag = false;
+            }
+
+        }
+
         return flag;
     }
 

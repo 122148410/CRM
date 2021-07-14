@@ -217,8 +217,8 @@ public class ContactsController {
     @RequestMapping("/unbundActivity.do")
     public boolean unbundActivity(String id) {
         System.out.println("解除联系人中的活动=-=-=-=unbundActivity.do");
+       // System.out.println("unbundActivity控制"+id);
 
-        System.out.println("unbundActivity控制"+id);
          boolean flag = contactsService.unbundActivity(id);
 
          return flag;
@@ -226,8 +226,28 @@ public class ContactsController {
     }
 
 
+    @ResponseBody
+    @RequestMapping("/getActivityListAndNotContactsId.do")
+    public List<Activity> getActivityListAndNotContactsId(String contactsId,String aname) {
+        System.out.println("查询市场活动并且不包含已关联的市场活动=-=-=-=getActivityListAndNotContactsId.do");
+
+        Map<String, String> map = new HashMap<>();
+        map.put("contactsId",contactsId);
+        map.put("aname",aname);
+
+        List<Activity> aList = activityService.getActivityListAndNotContactsId(map);
+        return aList;
+
+    }
 
 
+    @ResponseBody
+    @RequestMapping("/bundActivity.do")
+    public boolean bundActivity(String cid,String[] aid) {
+        System.out.println("给联系人绑定市场活动=-=-=-=bundActivity.do");
 
+        boolean flag = contactsService.bundActivity(cid,aid);
+        return flag;
 
+    }
 }
