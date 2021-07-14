@@ -18,6 +18,11 @@
         )
     </insert>
 
+
+   <delete id="unbundActivity">
+        delete from tbl_contacts_activity_relation where id=#{id}
+    </delete>
+
 </mapper>
 
 

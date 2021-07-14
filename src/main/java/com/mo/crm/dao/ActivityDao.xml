@@ -213,7 +213,7 @@
     <select id="getContactsActivityList" resultType="Activity">
         select
 
-        a.id,
+        car.id as id,
         u.name as owner,
         a.name,
         a.startDate,

@@ -29,4 +29,6 @@ public interface ContactsService {
     List<Contacts> searchContactsByCondition(Contacts con);
 
     List<Tran> getContactsTranList(Tran contactsId);
+
+    boolean unbundActivity(String id);
 }

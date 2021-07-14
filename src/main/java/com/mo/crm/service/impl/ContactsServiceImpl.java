@@ -1,9 +1,6 @@
 package com.mo.crm.service.impl;
 
-import com.mo.crm.dao.ContactsDao;
-import com.mo.crm.dao.CustomerDao;
-import com.mo.crm.dao.TranDao;
-import com.mo.crm.dao.UserDao;
+import com.mo.crm.dao.*;
 import com.mo.crm.domain.Contacts;
 import com.mo.crm.domain.Customer;
 import com.mo.crm.domain.Tran;
@@ -26,6 +23,8 @@ public class ContactsServiceImpl implements ContactsService {
 
     @Autowired
     private ContactsDao contactsDao;
+    @Autowired
+    private ContactsActivityRelationDao contactsActivityRelationDao;
 
     @Autowired
     private UserDao userDao;
@@ -35,6 +34,8 @@ public class ContactsServiceImpl implements ContactsService {
 
     @Autowired
     private TranDao tranDao;
+
+
 
 
     @Override
@@ -174,4 +175,13 @@ public class ContactsServiceImpl implements ContactsService {
         List<Tran> tList = tranDao.getContactsTranList(contactsId);
         return tList;
     }
+
+    @Override
+    public boolean unbundActivity(String id) {
+        System.out.println("unbundActivityIMPL"+id);
+        boolean flag = contactsActivityRelationDao.unbundActivity(id);
+        return flag;
+    }
+
+
 }

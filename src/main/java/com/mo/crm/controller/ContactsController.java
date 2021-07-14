@@ -206,12 +206,28 @@ public class ContactsController {
     public List<Activity> getContactsActivityList(Tran contactsId) {
         System.out.println("获取联系人中的市场活动=-=-=-=getContactsActivityList.do");
 
-
         List<Activity> aList = activityService.getContactsActivityList(contactsId);
         return aList;
 
+    }
+
+
+
+    @ResponseBody
+    @RequestMapping("/unbundActivity.do")
+    public boolean unbundActivity(String id) {
+        System.out.println("解除联系人中的活动=-=-=-=unbundActivity.do");
+
+        System.out.println("unbundActivity控制"+id);
+         boolean flag = contactsService.unbundActivity(id);
+
+         return flag;
 
     }
+
+
+
+
 
 
 }

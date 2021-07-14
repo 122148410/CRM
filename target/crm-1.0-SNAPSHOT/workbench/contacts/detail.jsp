@@ -158,7 +158,29 @@
 
           }
 
-          function unbundActivity() {
+          function unbundActivity(id) {
+
+			 // alert(id);
+
+              $.ajax({
+                  url : "workbench/contacts/unbundActivity.do",
+                  data : {
+                    "id":id,
+                  },
+                  type : "post",
+                  dataType : "json",
+                  success : function (data) {
+
+                      if (data) {
+                          alert("成功");
+                          location.reload();
+                      } else {
+                          alert("失败");
+                      }
+
+                  }
+
+              })
 
 
           }
