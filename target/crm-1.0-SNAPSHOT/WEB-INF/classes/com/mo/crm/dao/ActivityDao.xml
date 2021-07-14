@@ -208,6 +208,25 @@
         where a.name like '%' #{name} '%'
     </select>
 
+
+
+    <select id="getContactsActivityList" resultType="Activity">
+        select
+
+        a.id,
+        u.name as owner,
+        a.name,
+        a.startDate,
+        a.endDate
+
+        from tbl_activity a
+        join tbl_user u
+        on u.id = a.owner
+        join tbl_contacts_activity_relation car
+        on car.activityId = a.id
+
+        where contactsId=#{contactsId}
+    </select>
 </mapper>
 
 

@@ -3,6 +3,7 @@ package com.mo.crm.service;
 import com.mo.crm.domain.Activity;
 import com.mo.crm.domain.ActivityRemark;
 import com.mo.crm.domain.Clue;
+import com.mo.crm.domain.Tran;
 import com.mo.crm.vo.PaginationVO;
 
 import java.util.List;
@@ -40,4 +41,6 @@ public interface ActivityService {
     List<Activity> getActivityListByNameAndNotByClueId(Map<String, String> map);
 
     List<Activity> getActivityListByName(String aname);
+
+    List<Activity> getContactsActivityList(Tran contactsId);
 }

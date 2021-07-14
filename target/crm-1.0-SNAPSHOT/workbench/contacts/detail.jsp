@@ -60,7 +60,7 @@
 
 
 
-
+		searchContactsActivityList();
 
 		getContactsTranList();
 	});
@@ -125,8 +125,40 @@
 
                   });
               }
+              
 
+          }
+          
+    
+          function searchContactsActivityList() {
 
+              $.ajax({
+                  url : "workbench/contacts/getContactsActivityList.do",
+                  data : {
+                    "contactsId":"${con.id}"
+                  },
+                  type : "get",
+                  dataType : "json",
+                  success : function (data) {
+                      var html = "";
+                      $.each(data,function (i,n) {
+
+                          html += '<tr>';
+                          html += '<td>'+n.name+'</td>';
+                          html += '<td>'+n.startDate+'</td>';
+                          html += '<td>'+n.endDate+'</td>';
+                          html += '<td>'+n.owner+'</td>';
+                          html += '<td><a href="javascript:void(0);" onclick="unbundActivity(\''+n.id+'\')" style="text-decoration: none;"><span class="glyphicon glyphicon-remove"></span>解除关联</a></td>';
+                          html += '</tr>';
+                      })
+                      $("#contactsActivityBody").html(html);
+                  }
+
+              })
+
+          }
+
+          function unbundActivity() {
 
 
           }
@@ -547,14 +579,14 @@
 							<td></td>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
+					<tbody id="contactsActivityBody">
+						<%--<tr>
 							<td><a href="activity/detail.html" style="text-decoration: none;">发传单</a></td>
 							<td>2020-10-10</td>
 							<td>2020-10-20</td>
 							<td>zhangsan</td>
 							<td><a href="javascript:void(0);" data-toggle="modal" data-target="#unbundActivityModal" style="text-decoration: none;"><span class="glyphicon glyphicon-remove"></span>解除关联</a></td>
-						</tr>
+						</tr>--%>
 					</tbody>
 				</table>
 			</div>

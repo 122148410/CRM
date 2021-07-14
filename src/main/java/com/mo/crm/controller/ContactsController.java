@@ -5,6 +5,7 @@ import com.mo.crm.domain.Activity;
 import com.mo.crm.domain.Contacts;
 import com.mo.crm.domain.Tran;
 import com.mo.crm.domain.User;
+import com.mo.crm.service.ActivityService;
 import com.mo.crm.service.ContactsService;
 import com.mo.crm.service.TranService;
 import com.mo.crm.utils.DateTimeUtil;
@@ -35,6 +36,9 @@ public class ContactsController {
 
     @Autowired
     private TranService tranService;
+
+    @Autowired
+    private ActivityService activityService;
 
 
     @ResponseBody
@@ -196,6 +200,18 @@ public class ContactsController {
 
 
 
+
+    @ResponseBody
+    @RequestMapping("/getContactsActivityList.do")
+    public List<Activity> getContactsActivityList(Tran contactsId) {
+        System.out.println("获取联系人中的市场活动=-=-=-=getContactsActivityList.do");
+
+
+        List<Activity> aList = activityService.getContactsActivityList(contactsId);
+        return aList;
+
+
+    }
 
 
 }

@@ -3,10 +3,7 @@ package com.mo.crm.service.impl;
 import com.mo.crm.dao.ActivityDao;
 import com.mo.crm.dao.ActivityRemarkDao;
 import com.mo.crm.dao.UserDao;
-import com.mo.crm.domain.Activity;
-import com.mo.crm.domain.ActivityRemark;
-import com.mo.crm.domain.Clue;
-import com.mo.crm.domain.User;
+import com.mo.crm.domain.*;
 import com.mo.crm.service.ActivityService;
 import com.mo.crm.vo.PaginationVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -150,6 +147,12 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public List<Activity> getActivityListByName(String aname) {
         List<Activity> aList = activityDao.getActivityListByName(aname);
+        return aList;
+    }
+
+    @Override
+    public List<Activity> getContactsActivityList(Tran contactsId) {
+        List<Activity> aList = activityDao.getContactsActivityList(contactsId);
         return aList;
     }
 
