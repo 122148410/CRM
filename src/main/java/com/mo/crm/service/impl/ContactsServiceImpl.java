@@ -227,5 +227,11 @@ public class ContactsServiceImpl implements ContactsService {
         return flag;
     }
 
+    @Override
+    public boolean saveRemark(ContactsRemark cr) {
+        boolean flag = contactsRemarkDao.saveRemark(cr);
+        return flag;
+    }
+
 
 }

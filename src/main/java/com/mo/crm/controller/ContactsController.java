@@ -299,6 +299,30 @@ public class ContactsController {
 
 
 
+    @ResponseBody
+    @RequestMapping("/saveRemark.do")
+    public boolean saveRemark(HttpSession session,String noteContent,String contactsId) {
+        System.out.println("添加联系人中的备注=-=-=-=saveRemark.do");
+
+        String createTime = DateTimeUtil.getSysTime();
+        String createBy = ((User)session.getAttribute("user")).getName();
+        String editFlag = "0";
+
+        ContactsRemark cr = new ContactsRemark();
+        cr.setId(UUIDUtil.getUUID());
+        cr.setCreateBy(createBy);
+        cr.setCreateTime(createTime);
+        cr.setEditFlag(editFlag);
+        cr.setNoteContent(noteContent);
+        cr.setContactsId(contactsId);
+
+       boolean flag = contactsService.saveRemark(cr);
+       return flag;
+    }
+
+
+
+
 
 
 

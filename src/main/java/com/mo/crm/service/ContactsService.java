@@ -40,4 +40,6 @@ public interface ContactsService {
     boolean deleteRemark(String id);
 
     boolean updateRemarkById(ContactsRemark cr);
+
+    boolean saveRemark(ContactsRemark cr);
 }

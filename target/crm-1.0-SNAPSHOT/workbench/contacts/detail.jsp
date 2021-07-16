@@ -213,6 +213,44 @@
 
 
 
+		$("#saveRemarkBtn").click(function () {
+
+			//var noteContent = $("#remark").val();
+
+			$.ajax({
+				url : "workbench/contacts/saveRemark.do",
+				data : {
+                  "noteContent":$.trim($("#remark").val()),
+				  "contactsId":"${con.id}",
+				},
+				type : "post",
+				dataType : "json",
+				success : function (data) {
+
+					if (data) {
+
+						//保存成功后，清空文本域
+						alert("添加备注成功")
+						$("#remark").val("");
+						location.reload();
+					} else {
+						alert("添加备注失败")
+					}
+
+				}
+
+			})
+
+		})
+
+
+
+
+
+
+
+
+
         showRemark();
 
 		searchContactsActivityList();
