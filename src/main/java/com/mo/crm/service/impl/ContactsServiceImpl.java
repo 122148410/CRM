@@ -22,6 +22,8 @@ public class ContactsServiceImpl implements ContactsService {
     private ContactsDao contactsDao;
     @Autowired
     private ContactsActivityRelationDao contactsActivityRelationDao;
+    @Autowired
+    private ContactsRemarkDao contactsRemarkDao;
 
     @Autowired
     private UserDao userDao;
@@ -202,6 +204,26 @@ public class ContactsServiceImpl implements ContactsService {
 
         }
 
+        return flag;
+    }
+
+    @Override
+    public List<ContactsRemark> getRemarkByContacts(String contactsId) {
+
+        List<ContactsRemark> conRemarkList = contactsRemarkDao.getRemarkByContacts(contactsId);
+
+        return conRemarkList;
+    }
+
+    @Override
+    public boolean deleteRemark(String id) {
+        boolean flag = contactsRemarkDao.deleteRemark(id);
+        return flag;
+    }
+
+    @Override
+    public boolean updateRemarkById(ContactsRemark cr) {
+       boolean flag = contactsRemarkDao.updateRemarkById(cr);
         return flag;
     }
 

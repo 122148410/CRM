@@ -1,10 +1,7 @@
 package com.mo.crm.controller;
 
 
-import com.mo.crm.domain.Activity;
-import com.mo.crm.domain.Contacts;
-import com.mo.crm.domain.Tran;
-import com.mo.crm.domain.User;
+import com.mo.crm.domain.*;
 import com.mo.crm.service.ActivityService;
 import com.mo.crm.service.ContactsService;
 import com.mo.crm.service.TranService;
@@ -250,4 +247,64 @@ public class ContactsController {
         return flag;
 
     }
+
+
+
+
+    @ResponseBody
+    @RequestMapping("/getRemarkByContacts.do")
+    public List<ContactsRemark> getRemarkByContacts(String contactsId) {
+        System.out.println("获取备注通过联系人ID=-=-=-=getRemarkByContacts.do");
+
+        List<ContactsRemark> conRemarkList = contactsService.getRemarkByContacts(contactsId);
+        return conRemarkList;
+
+    }
+
+
+
+
+    @ResponseBody
+    @RequestMapping("/deleteRemark.do")
+    public boolean deleteRemark(String id) {
+        System.out.println("通过联系人备注的ID删除备注=-=-=-=deleteRemark.do");
+
+        boolean flag = contactsService.deleteRemark(id);
+        return flag;
+
+    }
+
+
+
+
+    @ResponseBody
+    @RequestMapping("/updateRemarkById.do")
+    public boolean updateRemarkById(HttpSession session,ContactsRemark cr) {
+        System.out.println("通过联系人备注的ID修改备注=-=-=-=updateRemarkById.do");
+
+        // 修改时间: 当前系统时间
+        String editTime = DateTimeUtil.getSysTime();
+        // 修改人: 当前登录用户
+        String editBy = ((User) session.getAttribute("user")).getName();
+        String editFlag = "1";
+
+        cr.setEditFlag(editFlag);
+        cr.setEditBy(editBy);
+        cr.setEditTime(editTime);
+
+        boolean flag = contactsService.updateRemarkById(cr);
+        return flag;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 }

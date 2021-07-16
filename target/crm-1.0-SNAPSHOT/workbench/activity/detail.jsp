@@ -60,19 +60,13 @@
 
 		showRemarkList();
 
-		/*$("#remarkBody").on("mouseover",".remarkDiv",function(){
+		$("#remarkBody").on("mouseover",".remarkDiv",function(){
 			$(this).children("div").children("div").show();
 		})
 		$("#remarkBody").on("mouseout",".remarkDiv",function(){
 			$(this).children("div").children("div").hide();
-		})*/
+		})
 
-		$("#remarkBody").on("mouseover",".remarkDiv",function () {
-          $(this).children("div").children("div").show();
-		})
-		$("#remarkBody").on("mouseout",".remarkDiv",function () {
-			$(this).children("div").children("div").hide();
-		})
 
 
 

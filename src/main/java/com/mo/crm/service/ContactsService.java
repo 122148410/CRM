@@ -1,6 +1,7 @@
 package com.mo.crm.service;
 
 import com.mo.crm.domain.Contacts;
+import com.mo.crm.domain.ContactsRemark;
 import com.mo.crm.domain.Tran;
 import com.mo.crm.domain.User;
 import com.mo.crm.vo.PaginationVO;
@@ -33,4 +34,10 @@ public interface ContactsService {
     boolean unbundActivity(String id);
 
     boolean bundActivity(String cid, String[] aid);
+
+    List<ContactsRemark> getRemarkByContacts(String contactsId);
+
+    boolean deleteRemark(String id);
+
+    boolean updateRemarkById(ContactsRemark cr);
 }
