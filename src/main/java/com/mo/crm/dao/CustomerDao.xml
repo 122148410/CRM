@@ -45,7 +45,9 @@
     </select>
 
     <select id="getCustomerListByCondition" resultType="Customer">
+
         select
+
         cus.id,
         u.name as owner,
         cus.name,

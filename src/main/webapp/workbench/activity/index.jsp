@@ -311,7 +311,7 @@
 	 function pageList(pageNo,pageSize) {
 
          //将全选的复选框的√干掉
-         $("#qx").prop("checked",false);
+        // $("#qx").prop("checked",false);
 
          //查询前，将隐藏域中保存的信息取出来，重新赋予到搜索框中
          $("#search-name").val($.trim($("#hidden-name").val()));
@@ -553,7 +553,7 @@
 				    </div>
 				  </div>
 
-				  <button type="submit" id="searchBtn" class="btn btn-default">查询</button>
+				  <button type="button" id="searchBtn" class="btn btn-default">查询1</button>
 
 				</form>
 			</div>

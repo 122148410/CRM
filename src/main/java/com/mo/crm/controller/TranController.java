@@ -65,7 +65,7 @@ public class TranController {
 
 
     //@ResponseBody
-    @RequestMapping("/getCustomerName.do")
+   @RequestMapping("/getCustomerName.do")
     public void getCustomerName(HttpServletRequest request ,HttpServletResponse response){
         String name = request.getParameter("name");
         List<String> sList = customerService.getCustomerName(name);
@@ -171,7 +171,7 @@ public class TranController {
 
     @ResponseBody
     @RequestMapping("/changeStage.do")
-    public Map<String,Object> changeStage(Tran t, HttpServletRequest request,HttpSession session){
+    public Map<String,Object> changeStage(Tran t, HttpServletRequest request){
         System.out.println("执行改变阶段的操作");
 
         //String stage = request.getParameter("stage");
@@ -219,8 +219,16 @@ public class TranController {
 
     @ResponseBody
     @RequestMapping("/pageTransactionList.do")
-    public PaginationVO<Tran> pageTransactionList(HttpServletRequest request,Tran t){
+    public PaginationVO<Tran> pageTransactionList(HttpServletRequest request){
         System.out.println("查询交易Transaction（结合条件查询+分页查询）");
+
+        String owner = request.getParameter("owner");
+        String name = request.getParameter("name");
+        String stage = request.getParameter("stage");
+        String source = request.getParameter("source");
+        String customerId = request.getParameter("customerId");
+        String type = request.getParameter("type");
+        String contactsId = request.getParameter("contactsId");
 
         String pageNoStr = request.getParameter("pageNo");
         int pageNo = Integer.valueOf(pageNoStr);
@@ -233,7 +241,14 @@ public class TranController {
         Map<String, Object> map = new HashMap<>();
         map.put("skipCount",skipCount);
         map.put("pageSize",pageSize);
-        map.put("t",t);
+        map.put("owner",owner);
+        map.put("name",name);
+        map.put("stage",stage);
+        map.put("source",source);
+        map.put("customerId",customerId);
+        map.put("type",type);
+        map.put("contactsId",contactsId);
+
         PaginationVO<Tran> vo = tranService.pageTransactionList(map);
         return vo;
     }
@@ -301,24 +316,6 @@ public class TranController {
     @RequestMapping("/transactionUpdate.do")
     public  boolean transactionUpdate(String id) {
         System.out.println("交易修改111=-=-=-=-=-=-transactionUpdate.do");
-
-        /*Map<String,Object>*/
-       // Tran tran  = tranService.searchTran(id);
-       // List<User> uList = userService.getUserList();
-       // Tran t  = tranService.searchTranId(id);
-
-       // Map<String,Object> map = new HashMap<>();
-       // map.put("tran",tran);
-       // map.put("uList",uList);
-      //  map.put("t",t);
-
-      /*  Map<String,String> pMap = (Map<String,String>)request.getServletContext().getAttribute("pMap");
-        tran.setPossibility(pMap.get(tran.getStage()));
-*/
-       /* request.setAttribute("tran",tran);
-        request.setAttribute("uList",uList);
-        request.setAttribute("t",t);*/
-
 
         boolean flag = true;
         return flag;

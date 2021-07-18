@@ -125,7 +125,6 @@
         t.source,
         con.fullname as contactsId
 
-
         from tbl_tran t
         join tbl_user u
         on t.owner = u.id
@@ -135,31 +134,31 @@
         on t.customerId = cus.id
 
         <where>
-            <if test="owner!=null and owner!='' ">
+            <if test="owner!=null and owner!=''">
               and u.name like '%' #{owner} '%'
             </if>
 
-            <if test="name!=null and name!='' ">
+            <if test="name!=null and name!=''">
                 and t.name like '%' #{name} '%'
             </if>
 
-            <if test="customerId!=null and customerId!='' ">
+            <if test="customerId!=null and customerId!=''">
                 and cus.name like '%' #{customerId} '%'
             </if>
 
-            <if test="stage!=null and stage!='' ">
-                and t.stage like '%' #{stage} '%'
+            <if test="stage!=null and stage!=''">
+                and t.stage=#{stage}
             </if>
 
-            <if test="type!=null and type!='' ">
-                and t.type like '%' #{type} '%'
+            <if test="type!=null and type!=''">
+                and t.type=#{type}
             </if>
 
-            <if test="source!=null and source!='' ">
-                and t.source like '%' #{source} '%'
+            <if test="source!=null and source!=''">
+                and t.source=#{source}
             </if>
 
-            <if test="contactsId!=null and contactsId!='' ">
+            <if test="contactsId!=null and contactsId!=''">
                 and con.fullname like '%' #{contactsId} '%'
             </if>
         </where>

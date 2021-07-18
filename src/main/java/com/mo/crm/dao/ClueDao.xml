@@ -62,13 +62,13 @@
                 c.state
 
                 from tbl_clue c
-              left join tbl_user u
+                join tbl_user u
                 on c.owner=u.id
 
                 <where>
 
                     <if test="phone!=null and phone!=''">
-                        c.phone like '%' #{phone} '%'
+                        and c.phone like '%' #{phone} '%'
                     </if>
 
                     <if test="mphone!=null and mphone!=''">
@@ -97,9 +97,9 @@
 
                 </where>
 
-             /*order by c.fullname desc*/
+             order by c.fullname desc
 
-                limit #{skipCount},#{pageSize}
+             limit #{skipCount},#{pageSize}
         </select>
 
         <select id="getClueTotalByCondition" resultType="int">

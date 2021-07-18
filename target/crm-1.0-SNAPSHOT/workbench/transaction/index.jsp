@@ -36,59 +36,11 @@
 		});
 
 
-		pageTransactionList(1,3);
+		pageTransactionList(1,5);
 
 
 
-		$("#transactionQuery").click(function () {
 
-/*
-			$("#hidden-owner").val($.trim($("#create-owner")));
-			$("#hidden-name").val($.trim($("#create-name")));
-			$("#hidden-customerId").val($.trim($("#create-customerId")));
-			$("#hidden-stage").val($.trim($("#create-stage")));
-			$("#hidden-type").val($.trim($("#create-type")));
-			$("#hidden-source").val($.trim($("#create-source")));
-			$("#hidden-contactsId").val($.trim($("#create-contactsId")));*/
-
-			$.ajax({
-				url : "workbench/transaction/transactionQuery.do",
-				data: {
-					"owner":$.trim($("#create-owner").val()),
-					"name":$.trim($("#create-name").val()),
-					"customerId":$.trim($("#create-customerId").val()),
-					"stage":$.trim($("#create-stage").val()),
-					"type":$.trim($("#create-type").val()),
-					"source":$.trim($("#create-source").val()),
-					"contactsId":$.trim($("#create-contactsId").val()),
-				},
-				type : "get",
-				dataType : "json",
-				success : function (data) {
-
-
-						var html = "";
-						$.each(data,function (i,n) {
-
-							html += '<tr class="active">';
-							html += '<td><input type="checkbox" name="xz" value="'+n.id+'"/></td>';
-							html += '<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href=\'workbench/transaction/detail.do?id='+n.id+'\';">'+n.name+'</a></td>';
-							html += '<td>'+n.customerId+'</td>';
-							html += '<td>'+n.stage+'</td>';
-							html += '<td>'+n.type+'</td>';
-							html += '<td>'+n.owner+'</td>';
-							html += '<td>'+n.source+'</td>';
-							html += '<td>'+n.contactsId+'</td>';
-							html += '</tr>';
-
-						})
-					//pageTransactionList(1,$("#transactionPage").bs_pagination('getOption','rowsPerPage'));
-						$("#transactionBody").html(html);
-
-				}
-
-			})
-		})
 
 		$("#qx").click(function () {
 			$("input[name=xz]").prop("checked",this.checked);
@@ -169,6 +121,22 @@
 		})
 
 
+		$("#transactionQuery").click(function () {
+
+			$("#hidden-name").val($.trim($("#create-name").val()));
+			$("#hidden-owner").val($.trim($("#create-owner").val()));
+			$("#hidden-customerId").val($.trim($("#create-customerId").val()));
+		    $("#hidden-stage").val($.trim($("#create-stage").val()));
+			$("#hidden-type").val($.trim($("#create-type").val()));
+			$("#hidden-source").val($.trim($("#create-source").val()));
+			$("#hidden-contactsId").val($.trim($("#create-contactsId").val()));
+
+			pageTransactionList(1,$("#transactionPage").bs_pagination('getOption', 'rowsPerPage'));
+
+		})
+
+
+
 
 
 	});
@@ -176,13 +144,15 @@
 
 	function pageTransactionList(pageNo,pageSize) {
 
-		/*$("#create-owner").val($.trim($("#hidden-owner").val()));
+		$("#create-owner").val($.trim($("#hidden-owner").val()));
 		$("#create-name").val($.trim($("#hidden-name").val()));
 		$("#create-customerId").val($.trim($("#hidden-customerId").val()));
 		$("#create-stage").val($.trim($("#hidden-stage").val()));
 		$("#create-type").val($.trim($("#hidden-type").val()));
 		$("#create-source").val($.trim($("#hidden-source").val()));
-		$("#create-contactsId").val($.trim($("#hidden-contactsId").val()));*/
+		$("#create-contactsId").val($.trim($("#hidden-contactsId").val()));
+
+		alert($("#create-stage").val())
 
 	   $.ajax({
 		   url : "workbench/transaction/pageTransactionList.do",
@@ -366,7 +336,7 @@
 				    </div>
 				  </div>
 				  
-				  <button type="button" id="transactionQuery">查询</button>
+				  <button type="button" class="btn btn-default" id="transactionQuery">查询</button>
 				  
 				</form>
 			</div>

@@ -285,7 +285,10 @@
           $("#hidden-phone").val($.trim($("#search-phone").val()));
           $("#hidden-mphone").val($.trim($("#search-mphone").val()));
 
-			pageClueList(1,$("#cluePage").bs_pagination('getOption','rowsPerPage'));
+         // alert($("#hidden-fullname").val())
+
+			pageClueList(1,5);
+			//pageClueList(1,$("#cluePage").bs_pagination('getOption','rowsPerPage'));
 		/*	$.ajax({
 				url : "workbench/clue/getClueByCondition.do",
 				data : {
@@ -328,6 +331,11 @@
 
 
 
+
+
+
+
+
 		
 		
 	});
@@ -348,6 +356,7 @@
         $("#search-mphone").val($.trim($("#hidden-mphone").val()));
         $("#search-source").val($.trim($("#hidden-source").val()));
         $("#search-state").val($.trim($("#hidden-state").val()));
+
 
 		$.ajax({
 			url : "workbench/clue/pageClueList.do",

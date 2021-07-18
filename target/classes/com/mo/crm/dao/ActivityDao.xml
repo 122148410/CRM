@@ -50,7 +50,7 @@
         <where>
 
             <if test="name!=null and name!=''">
-                a.name like '%' #{name} '%'
+                and a.name like '%' #{name} '%'
             </if>
 
             <if test="owner!=null and owner!=''">
@@ -67,7 +67,7 @@
 
         </where>
 
-        order by a.createTime desc
+        order by a.startDate desc
 
         limit #{skipCount},#{pageSize}
     </select>

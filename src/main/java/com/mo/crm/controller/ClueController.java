@@ -69,17 +69,17 @@ public class ClueController {
 
     @ResponseBody
     @RequestMapping("/pageClueList.do")
-    public PaginationVO<Clue> pageClueList(HttpServletRequest request,Clue c){
+    public PaginationVO<Clue> pageClueList(HttpServletRequest request){
 
         System.out.println("查询线索（结合条件查询+分页查询）");
 
-        /*String fullname=request.getParameter("fullname");
+        String fullname=request.getParameter("fullname");
         String company=request.getParameter("company");
         String phone=request.getParameter("phone");
         String mphone=request.getParameter("mphone");
         String owner=request.getParameter("owner");
         String source=request.getParameter("source");
-        String state=request.getParameter("state");*/
+        String state=request.getParameter("state");
         String pageNoStr = request.getParameter("pageNo");
         int pageNo = Integer.valueOf(pageNoStr);
         //每页展现的记录数
@@ -92,15 +92,13 @@ public class ClueController {
         Map<String, Object> map = new HashMap<>();
         map.put("skipCount",skipCount);
         map.put("pageSize",pageSize);
-        map.put("c",c);
-
-       /* map.put("fullname",fullname);
+        map.put("fullname",fullname);
         map.put("company",company);
         map.put("phone",phone);
         map.put("mphone",mphone);
         map.put("owner",owner);
         map.put("source",source);
-        map.put("state",state);*/
+        map.put("state",state);
 
         PaginationVO<Clue> vo = clueService.pageClueList(map);
 

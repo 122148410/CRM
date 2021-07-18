@@ -48,27 +48,32 @@ public class CustomerController {
 
     @ResponseBody
     @RequestMapping("/pageCustomerList.do")
-    public PaginationVO<Customer> pageCustomerList(HttpServletRequest request,Customer c){
+    public PaginationVO<Customer> pageCustomerList(HttpServletRequest request){
         System.out.println("进入客户铺数据操作pageCustomerList.do");
 
+        String name = request.getParameter("name");
+        String owner = request.getParameter("owner");
+        String website = request.getParameter("website");
+        String phone = request.getParameter("phone");
        String pageNoStr = request.getParameter("pageNo");
        int pageNo = Integer.valueOf(pageNoStr);
-
        String pageSizeStr = request.getParameter("pageSize");
        int pageSize = Integer.valueOf(pageSizeStr);
-
        int skipCount = (pageNo-1)*pageSize;
 
         Map<String, Object> map = new HashMap<>();
-        map.put("c",c);
         map.put("skipCount",skipCount);
         map.put("pageSize",pageSize);
+        map.put("name",name);
+        map.put("owner",owner);
+        map.put("website",website);
+        map.put("phone",phone);
 
         PaginationVO<Customer> vo = customerService.pageCustomerList(map);
         return vo;
     }
 
-    @ResponseBody
+  @ResponseBody
     @RequestMapping("/searchCustomer.do")
     public List<Customer> searchCustomer(Customer c) {
         System.out.println("进入客户查询操作--searchCustomer.do");

@@ -43,7 +43,7 @@
 	        e.stopPropagation();
 	    });
 
-		pageCustomerList(1,3);
+		pageCustomerList(1,5);
 
 
 
@@ -161,8 +161,6 @@
                 })
             }
 
-
-
         })
 
 
@@ -258,9 +256,7 @@
 				}
 			}
 
-
 		})
-
 
 
 
@@ -268,56 +264,33 @@
            $("input[name=xz]").prop("checked",this.checked);
 		})
 
+		//根据条件搜索
 		$("#searchCustomer").click(function () {
-			//pageCustomerList(1,3);
 
 			$("#hidden-name").val($.trim($("#search-name").val()));
 			$("#hidden-owner").val($.trim($("#search-owner").val()));
 			$("#hidden-phone").val($.trim($("#search-phone").val()));
 			$("#hidden-website").val($.trim($("#search-website").val()));
 
-
-
-			$.ajax({
-				url : "workbench/customer/searchCustomer.do",
-				data : {
-					"name":$.trim($("#search-name").val()),
-					"owner":$.trim($("#search-owner").val()),
-					"phone":$.trim($("#search-phone").val()),
-					"website":$.trim($("#search-website").val()),
-				},
-				type : "get",
-				dataType : "json",
-				success : function (data) {
-
-					var html = "";
-					$.each(data,function (i,n) {
-						html += '<tr>';
-						html += '<td><input type="checkbox" name="xz" value="'+n.id+'" /></td>';
-						html += '<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href=\'workbench/customer/detail.do?id='+n.id+'\';">'+n.name+'</a></td>';
-						html += '<td>'+n.owner+'</td>';
-						html += '<td>'+n.phone+'</td>';
-						html += '<td>'+n.website+'</td>';
-						html += '</tr>';
-					})
-					//pageCustomerList(1,2);
-					$("#customerBody").html(html);
-
-				}
-
-			})
+			pageCustomerList(1,5);
 
 		})
+
+
+
+
 	});
 
 
 
 
 
-
-
-
 	function pageCustomerList(pageNo,pageSize) {
+
+		$("#seacrch-name").val($.trim($("#hidden-name").val()));
+		$("#seacrch-owner").val($.trim($("#hidden-owner").val()));
+		$("#seacrch-phone").val($.trim($("#hidden-phone").val()));
+		$("#seacrch-website").val($.trim($("#hidden-website").val()));
 
 		$.ajax({
 			url : "workbench/customer/pageCustomerList.do",

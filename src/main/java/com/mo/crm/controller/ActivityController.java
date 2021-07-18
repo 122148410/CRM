@@ -48,7 +48,7 @@ public class ActivityController {
 
     @RequestMapping("/pageList")
     @ResponseBody
-    public PaginationVO<Activity> pageList(HttpServletRequest request, Activity activity){
+    public PaginationVO<Activity> pageList(HttpServletRequest request){
         System.out.println("进入到查询市场活动信息列表的操作（结合条件查询+分页查询）");
         String name = request.getParameter("name");
         String owner = request.getParameter("owner");
