@@ -8,7 +8,6 @@
 <head>
 	<base href="<%=basePath%>">
 <meta charset="UTF-8">
-
 <link href="jquery/bootstrap_3.3.0/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="jquery/jquery-1.11.1-min.js"></script>
 <script type="text/javascript" src="jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
@@ -58,7 +57,6 @@
 			$(this).children("span").css("color","#E6E6E6");
 		});
 
-		showRemarkList();
 
 		$("#remarkBody").on("mouseover",".remarkDiv",function(){
 			$(this).children("div").children("div").show();
@@ -66,6 +64,14 @@
 		$("#remarkBody").on("mouseout",".remarkDiv",function(){
 			$(this).children("div").children("div").hide();
 		})
+
+
+
+
+
+		showRemarkList();
+
+
 
 
 
@@ -115,8 +121,13 @@
 		})
 
 
+
+
 		$("#updateRemarkBtn").click(function () {
-              //var id = $("#remarkId").val();
+
+              var id = $("#remarkId").val();
+			alert("remarkId"+id);
+
 			$.ajax({
 				url : "workbench/activity/updateRemark.do",
 				data : {
@@ -130,13 +141,14 @@
 					if (data) {
 						//修改备注成功
 						//更新div中相应的信息，需要更新的内容有 noteContent，editTime，editBy
-						$("#e"+id).html(data.ar.noteContent);
-						$("#s"+id).html(data.ar.editTime+" 由"+data.ar.editBy);
+						//$("#e"+id).html(data.ar.noteContent);
+						//$("#s"+id).html(data.ar.editTime+" 由"+data.ar.editBy);
 
 						//更新内容之后，关闭模态窗口
 						$("#editRemarkModal").modal("hide");
 
-						alert("修改备注成功")
+						alert("修改备注成功");
+						location.reload();
 					} else {
 						alert("修改备注失败")
 					}
@@ -149,7 +161,16 @@
 
 
 
+        //修改市场活动的备注
+	/*	$("#updateRemarkBtn").click(function () {
 
+            //获取备注的ID
+		   var id = $("#remarkId").val();
+		   alert("remarkId"+id);
+			//获取备注的内容
+
+
+		})*/
 
 
 

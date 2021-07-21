@@ -14,6 +14,8 @@
 <script type="text/javascript" src="jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		$(function () {
+
+
 			if (window.top != window) {
 				window.top.location=window.location;
 			}
@@ -27,6 +29,7 @@
 
 		  var loginAct = $.trim($("#loginAct").val());
 		  var loginPwd = $.trim($("#loginPwd").val());
+
 
 			if (loginAct == "" || loginPwd == "") {
 				$("#msg").html("账号密码不能为空");
@@ -46,7 +49,7 @@
 					if (data) {
 						window.location.href = "workbench/index.jsp";
 					} else {
-						alert($("#msg").html(data.msg));
+						$("#msg").html("账号或密码错误");
 					}
 				}
 
@@ -59,7 +62,59 @@
 			  login();
 		  }
 		}
+
+
+
+
+
+		function change() {
+			//alert("change")
+			var type = $("#loginPwd").attr("type");
+			if (type == "text") {
+				//attr：设置或返回被选元素的属性值。
+				$("#loginPwd").attr("type", "password");
+
+				//toggleClass：如果存在（不存在）就删除（添加）一个类。
+				$("#passwordeye").toggleClass("glyphicon-eye-open");
+				$("#passwordeye").toggleClass("glyphicon-eye-close");
+			} else {
+				$("#loginPwd").attr("type", "text");
+				$("#passwordeye").toggleClass("glyphicon-eye-open");
+				$("#passwordeye").toggleClass("glyphicon-eye-close");
+			}
+
+		}
+
+
+
+		function clean() {
+			//alert("clean")
+		 $("#loginAct").val("");
+	     $("#loginAct").focus();
+		}
+
+
+
 	</script>
+
+
+<style>
+	.form-control-feedback-my {
+		position: absolute;
+		top: 0;
+		right: 0;
+		z-index: 2;
+		display: block;
+		width: 34px;
+		height: 34px;
+		line-height: 34px;
+		text-align: center;
+		pointer-events: auto;
+		cursor:pointer;
+	}
+</style>
+
+
 </head>
 <body>
 	<div style="position: absolute; top: 0px; left: 0px; width: 60%;">
@@ -76,15 +131,20 @@
 			</div>
 			<form action="workbench/index.jsp" class="form-horizontal" role="form">
 				<div class="form-group form-group-lg">
-					<div style="width: 350px;">
-						<input class="form-control" id="loginAct" type="text" placeholder="用户名">
+					<div class="input-group form-group" style="width: 350px;">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+						<input class="form-control" id="loginAct" type="text" placeholder="用户名"/>
+						<span onclick="clean()" class="glyphicon glyphicon-remove-circle form-control-feedback-my" style="padding:7px;font-size: 15px;"></span>
 					</div>
-					<div style="width: 350px; position: relative;top: 20px;">
-						<input class="form-control" id="loginPwd" type="password" placeholder="密码">
+					<div class="input-group form-group" style="width: 350px; position: relative;top: 20px;">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+						<input class="form-control" id="loginPwd" type="password" placeholder="密码"/>
+					    <span onclick="change()" id="passwordeye" class="glyphicon glyphicon-eye-close form-control-feedback-my" style="padding:5px;font-size: 18px;"></span>
 					</div>
 					<div class="checkbox"  style="position: relative;top: 30px; left: 10px;">
-						
+
 							<span id="msg" style="color: red"></span>
+
 					</div>
 					<button id="submitBtn" type="button" class="btn btn-primary btn-lg btn-block"  style="width: 350px; position: relative;top: 45px;">登录321</button>
 				</div>

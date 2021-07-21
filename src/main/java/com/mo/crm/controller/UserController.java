@@ -24,7 +24,7 @@ public class UserController {
 
     @RequestMapping("/crm/user/login.do")
     @ResponseBody
-    public Map<String,Object> login(HttpServletRequest request,HttpSession session, User user) throws LoginException {
+    public boolean login(HttpSession session, User user){
         System.out.println("进入到用户登陆的控制器");
         System.out.println("进入到验证登录操作");
 
@@ -35,10 +35,16 @@ public class UserController {
         user = userService.login(loginAct,loginPwd);
         session.setAttribute("user", user);
 
-        Map<String,Object> map = new HashMap<>();
-         map.put("success",true);
+      // Map<String,Object> map = new HashMap<>();
 
-         return map;
+
+       boolean flag = true;
+       if (user!=null) {
+           flag = true;
+        }else{
+            flag = false;
+        }
+         return flag;
     }
 
 }

@@ -6,7 +6,7 @@ import com.mo.crm.exception.LoginException;
 import java.util.List;
 
 public interface UserService {
-    User login(String loginAct, String loginPwd) throws LoginException;
+    User login(String loginAct, String loginPwd);
 
     List<User> getUserList();
 

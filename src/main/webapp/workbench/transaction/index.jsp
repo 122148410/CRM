@@ -152,7 +152,7 @@
 		$("#create-source").val($.trim($("#hidden-source").val()));
 		$("#create-contactsId").val($.trim($("#hidden-contactsId").val()));
 
-		alert($("#create-stage").val())
+		//alert($("#create-stage").val())
 
 	   $.ajax({
 		   url : "workbench/transaction/pageTransactionList.do",

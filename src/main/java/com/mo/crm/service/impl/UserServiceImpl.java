@@ -18,15 +18,18 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public User login(String loginAct, String loginPwd) throws LoginException {
+    public User login(String loginAct, String loginPwd){
+
         Map<String,String> map = new HashMap<>();
         map.put("loginAct", loginAct);
         map.put("loginPwd", loginPwd);
         User user = userDao.login(map);
 
-        if (user == null) {
+
+
+        /*if (user == null) {
             throw new LoginException("账号密码错误");
-        }
+        }*/
 
         return user;
     }

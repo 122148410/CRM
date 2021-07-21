@@ -11,6 +11,33 @@
 <body>
 
 
+<style>
+    .form-control-feedback-my {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 2;
+        display: block;
+        width: 34px;
+        height: 34px;
+        line-height: 34px;
+        text-align: center;
+        pointer-events: auto;
+        cursor: pointer;
+    }
+</style>
+
+
+$(".time").datetimepicker({
+minView: "month",
+language:  'zh-CN',
+format: 'yyyy-mm-dd',
+autoclose: true,
+todayBtn: true,
+pickerPosition: "bottom-left"
+});
+
+
             $.ajax({
             url : "",
             data : {
@@ -49,17 +76,17 @@
 
             /*
             *
-            * $("#customerPage").bs_pagination('getOption', 'currentPage'):
+            * $("#XXXPage").bs_pagination('getOption', 'currentPage'):
             * 		操作后停留在当前页
             *
-            * $("#customerPage").bs_pagination('getOption', 'rowsPerPage')
+            * $("#XXXPage").bs_pagination('getOption', 'rowsPerPage')
             * 		操作后维持已经设置好的每页展现的记录数
             *
             * 这两个参数不需要我们进行任何的修改操作
             * 	直接使用即可
             *
-            *     pageCustomerList($("#customerPage").bs_pagination('getOption', 'currentPage')
-            *     ,$("#customerPage").bs_pagination('getOption', 'rowsPerPage'));
+            *     XXXList($("#XXXPage").bs_pagination('getOption', 'currentPage')
+            *     ,$("#XXXPage").bs_pagination('getOption', 'rowsPerPage'));
             * */
 
 
@@ -68,7 +95,7 @@
 
         <%--自动补全--%>
             <script type="text/javascript" src="jquery/bs_typeahead/bootstrap3-typeahead.min.js"></script>
-            $("#create-customerName").typeahead({
+            $("#需要绑定的input").typeahead({
             source: function (query, process) {
             $.get(
             "workbench/transaction/getCustomerName.do",
@@ -88,6 +115,7 @@
             "json"
             );
             },
+            //等待1.5秒
             delay: 1500
             });
 
