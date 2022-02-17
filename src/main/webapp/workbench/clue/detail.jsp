@@ -238,6 +238,7 @@
 </head>
 <body>
 
+
 	<!-- 关联市场活动的模态窗口 -->
 	<div class="modal fade" id="bundModal" role="dialog">
 		<div class="modal-dialog" role="document" style="width: 80%;">

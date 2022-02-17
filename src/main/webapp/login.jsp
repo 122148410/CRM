@@ -58,12 +58,11 @@
 		}
 
 		function fun(event) {
+			//alert("msg");
           if (event.keyCode==13){
 			  login();
 		  }
 		}
-
-
 
 
 
@@ -81,6 +80,7 @@
 				$("#loginPwd").attr("type", "text");
 				$("#passwordeye").toggleClass("glyphicon-eye-open");
 				$("#passwordeye").toggleClass("glyphicon-eye-close");
+				$("#passwordeye").toggle()
 			}
 
 		}
@@ -92,7 +92,6 @@
 		 $("#loginAct").val("");
 	     $("#loginAct").focus();
 		}
-
 
 
 	</script>

@@ -12,12 +12,24 @@
 
     <!--springmvc配置文件， 声明controller和其它web相关的对象-->
     <context:component-scan base-package="com.mo.crm.controller"/>
+    
+    
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--<mvc:mapping/>用于指定当前所注册的拦截器可以拦截的请求路径，而/**表示拦截所有请求。-->
+            <mvc:mapping path="/**" />
+            <!--mvc:exclude-mapping 是另外一种拦截，它可以在你后来的测试中对某个页面进行不拦截，
+            这样就不用在MyInterceptor的preHandler方法里面获取不拦截的请求uri地址了(优选)-->
+            <bean class="com.mo.crm.interceptor.MyInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
+
+    <!--视图解析器-->
    <!-- <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value=""/>
         <property name="suffix" value=".jsp"/>
     </bean>-->
-
 
 
 
